@@ -14,7 +14,7 @@ My method differs from the Zhang et al PlosOne 2014 9(7) in the following:
 
 perl convert_rust_reading.field.pl --typo typo.field.txt --pheno TCAP_field1.txt --columns 5,7
 
-The scales for adult plant rust response types are based on published Stubbs 1986 CIMMYT mannual. The calculation of severity, response and coeficient of infection are similarly double weighted by the first reading. The program requires two tab-delimited files one for typo, the other is the actual field data (in 2 readings format).  
+The scales for adult plant rust response types are based on published Stubbs 1986 CIMMYT mannual. The calculation of severity, response and coeficient of infection are similarly double weighted by the first reading. The adult plant data requires the data to be formated into two readings (two columns); if there is a second reading, 2nd reading will be used to replace the 1st reading.
 
 Both the two programs are designed to take two input files (not just one phenotype file). The typo files (in both seedling and adult plant data conversion) allow more flexible and automatic control of data conversion. That said, I want to make it clear that the program is already written to avoid ambiguous regular expression matches, so even if the users simply provide a blank typo files or the same one as supplied with our example data, the conversion should perform smoothly for almost all the cases.
 
