@@ -1,0 +1,11 @@
+(X);13	;13
+5	NA
+6	NA
+7	NA
+8	NA
+9	NA
+ES	NA
+esc	NA
+na	NA
+x	NA
+X	NA
