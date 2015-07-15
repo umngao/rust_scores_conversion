@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 use strict;   ### This forces you to define a variable before you can use it; and it restricts your defined variables to be within their scopes/loops; i.e, the same variable $F might not interfere with another $F in a different loop
 use Getopt::Long;  ## This enables the program to take long options such as --pheno; which makes it easier for people to understand which parameter matches which file
-use List::Util qw (sum);  ## This enables the use of some functions such as "max, mean, sum"; which saves you a little bit time on coding...
+use List::Util qw (sum);  ## This enables the use of some functions such as "max,min, sum"; which saves you a little bit time on coding...
 
 ####This is the "convert_rust_reading.seedling.pl" V1 
 ###Conversion method proposed by Zhang et al 2014 Plos One 9(7) by taking the first and last reading, then double weight the first
@@ -32,7 +32,7 @@ GetOptions ("typo=s"=>\$typo, "pheno=s"=>\$pheno, "columns=s"=>\$columns);
 sub convert_typo {
 	open (IN, "< $typo"); ## 1st col typo 2nd col standard ...
 	my %hash_typo;
-	while (<IN>){$_=~s/[\r|\n]//g; my @F=split "\t"; $hash_typo{$F[0]}=$F[1]}; 
+	while (<IN>){$_=~s/[\r|\n]//g; my @F=split "\t"; if (@F ==2) {$hash_typo{$F[0]}=$F[1]}}; 
 	my $input=$_[0]; my $output="";
 	if (exists $hash_typo{$input}){$output=$hash_typo{$input}}else{$output=$input};
 	return $output;

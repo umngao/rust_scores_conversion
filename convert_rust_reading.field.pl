@@ -31,7 +31,7 @@ GetOptions ("typo=s"=>\$typo, "pheno=s"=>\$pheno, "columns=s"=>\$columns);
 sub convert_typo {
 	open (IN, "< $typo"); ## 1st col typo 2nd col tstandard ...
 	my %hash_typo;
-	while (<IN>){$_=~s/[\r|\n]//g; my @F=split "\t"; $hash_typo{$F[0]}=$F[1]}; 
+	while (<IN>){$_=~s/[\r|\n]//g; my @F=split "\t"; if (@F == 2){$hash_typo{$F[0]}=$F[1]}}; 
 	my $input=$_[0]; my $output="";
 	if (exists $hash_typo{$input}){$output=$hash_typo{$input}}else{$output=$input};
 	return $output;
