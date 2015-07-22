@@ -4,6 +4,9 @@ I wrote two small perl programs/scripts that can convert tables of rust readings
 
 usage: perl convert_rust_reading.seedling.pl --typo typo.seedling.txt --pheno TCAP_seedling.txt --columns 5,7,9,11,13,15,17
 
+### Note: Following the convention in perl, the column numbers are counted from zero, thus, 5,7,9 ... means columns 6,8,10 .....etc.
+
+
 My method differs from the Zhang et al PlosOne 2014 9(7) in the following:
 (1) It tolerates unlimited number of segregations in your reading such as ";123-3+422+33333-33-";
 (2) It uses all of the information (i.e., not just the first and last reading); it double weighs the first reading and keep the middle ones too. Let me know if you think this is not a good strategy.
