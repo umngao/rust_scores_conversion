@@ -22,7 +22,7 @@ use List::Util qw (sum);
 	# The second reading (e.g. col 8) will be used to replace the 1st reading (given that there is a 2nd reading); 
 	# You can always add an empty column full of 'NA' as the second reading
 
-if ($#ARGV <5){ die "usage: perl convert_rust_reading.field.pl --typo sr.typo.txt --pheno TCAP_field1.txt --columns 5,7"};
+if ($#ARGV <5){ die "usage: perl convert_rust_reading.field.pl --typo typo.field.txt --pheno TCAP_field1.txt --columns 5,7"};
 ########## This line tells people that if the required files were not supplied, it will quit or die and ask for the required files; i.e., You must provide --typo, --pheno, and --columns to the program, this program force you to do so (sorry for inconvenience, you can easily write your own, if you know a little bit about perl, and make it less strict);
 my ($typo,$pheno,$columns);
 GetOptions ("typo=s"=>\$typo, "pheno=s"=>\$pheno, "columns=s"=>\$columns);
