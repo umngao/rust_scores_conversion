@@ -33,6 +33,7 @@ sub convert_typo {
 	my %hash_typo;
 	while (<IN>){$_=~s/[\r|\n]//g; my @F=split "\t"; if (@F == 2){$hash_typo{$F[0]}=$F[1]}}; 
 	my $input=$_[0]; my $output="";
+	if ($input eq ""){$input ="NA"};
 	if (exists $hash_typo{$input}){$output=$hash_typo{$input}}else{$output=$input};
 	return $output;
 }
@@ -62,7 +63,7 @@ sub convert_sr{
 	my $sr=$_[0]; $sr=~s/[\r|\n]//g;
 	my $orig_sr=$sr;
 	$sr=&convert_typo($sr);
-	$sr=~s/(Trace)|(Tr)|(T)/2/ig; #### Here, we are replacing Trace and T readings into 2, which can be modified to be 1 or other small numbers
+	$sr=~s/(Trace)|(Tr)|(T)/2/g; #### Here, we are replacing Trace and T readings into 2, which can be modified to be 1 or other small numbers
 	$sr=~s/80\//80S/;$sr=~s/\///g;  ### I am replacing a reading specific for this TCAP_field file, 80/ to 80S/; this is a special case;
 	$sr=~tr/a-z/A-Z/;  ## Translate small case to Capitalized case
 	my ($sev,$it,$coi);
