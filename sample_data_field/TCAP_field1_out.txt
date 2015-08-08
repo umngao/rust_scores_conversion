@@ -1386,7 +1386,7 @@ sample_data_field/TCAP_field1	NA	NA	NA	Spring 2012	74318	647	344	NO HDG	-	-	na	n
 sample_data_field/TCAP_field1	55.00	1.00	55.00	Spring 2012	74801	2641	345	6/22/2012	55S	M	na	na
 sample_data_field/TCAP_field1	40.00	1.00	40.00	Spring 2012	74830	2912	346	V LATE	25S	H	40S	na
 sample_data_field/TCAP_field1	45.00	1.00	45.00	Spring 2012	78809	CI 10107	347	6/21/2012	45S	M	na	na
-sample_data_field/TCAP_field1	NA	NA	NA	Spring 2012	78811	CItr 10109	348	NO HDG	-	-	15S/SE	na
+sample_data_field/TCAP_field1	15.00	1.00	15.00	Spring 2012	78811	CItr 10109	348	NO HDG	-	-	15S/SE	na
 sample_data_field/TCAP_field1	25.00	0.53	13.25	Spring 2012	78814	CI 10112	349	6/19/2012	25MRMS	M	na	na
 sample_data_field/TCAP_field1	15.00	0.20	3.00	Spring 2012	79899	N-64	350	6/25/2012	15R	M	na	na
 sample_data_field/TCAP_field1	35.00	1.00	35.00	Spring 2012	81792	Marching No. 8	351	V FEW HDS	5MSS	H	35S	na
@@ -4153,7 +4153,7 @@ sample_data_field/TCAP_field1	60.00	0.53	31.80	Winter 2011	519267	Transelvania 1
 sample_data_field/TCAP_field1	25.00	0.40	10.00	Winter 2011	520594	ID 779-11	992	na	20RMS	na	25RMRMS	na
 sample_data_field/TCAP_field1	75.00	1.00	75.00	Winter 2011	542450	H82-710-1	993	na	75S	na	na	na
 sample_data_field/TCAP_field1	70.00	0.53	37.10	Winter 2011	542466	H86-708	994	na	70MRMS	na	na	na
-sample_data_field/TCAP_field1	38.33	0.47	17.89	Winter 2011	542706	Extra Early Blackhull	995	na	25RMRMS	na	25RTrMS/65S	na
+sample_data_field/TCAP_field1	17.33	0.40	6.93	Winter 2011	542706	Extra Early Blackhull	995	na	25RMRMS	na	25RTrMS/65S	na
 sample_data_field/TCAP_field1	70.00	1.00	70.00	Winter 2011	547263	Colonel	996	na	45S	na	70S	na
 sample_data_field/TCAP_field1	70.00	1.00	70.00	Winter 2011	548117	Ecsi	997	na	70S	na	na	na
 sample_data_field/TCAP_field1	70.00	1.00	70.00	Winter 2011	548119	Erpataki	998	na	70S	na	na	na

@@ -33,14 +33,15 @@ sub convert_typo {
 	my %hash_typo;
 	while (<IN>){$_=~s/[\r|\n]//g; my @F=split "\t"; if (@F == 2){$hash_typo{$F[0]}=$F[1]}}; 
 	my $input=$_[0]; my $output="";
-	if ($input eq ""){$input ="NA"};
+	if ($input eq ""){$input = 'NA'};
 	if (exists $hash_typo{$input}){$output=$hash_typo{$input}}else{$output=$input};
+	close (IN);
 	return $output;
 }
 
+
 ######### These are strange human typos that need to be taken care of ----> replacing with na or more standard readings...
 #2 response type should be converted to numeric;
-
 sub convert_mrs{
 	my $it=$_[0];
 	$it=~s/MR/X/g; $it=~s/MS/Y/g; 
@@ -67,11 +68,6 @@ sub convert_mrs{
 	return $num_auto;
 }
 
-
-
-
-
-
 ########### This is the response type numerically scaled;
 
 
@@ -81,7 +77,7 @@ sub convert_sr{
 	my $orig_sr=$sr;
 	$sr=&convert_typo($sr);
 	$sr=~s/(Trace)|(Tr)|(T)/2/g; #### Here, we are replacing Trace and T readings into 2, which can be modified to be 1 or other small numbers
-	$sr=~s/80\//80S/;$sr=~s/\///g;  ### I am replacing a reading specific for this TCAP_field file, 80/ to 80S/; this is a special case;
+	$sr=~s/[\/|\s+]//g; 
 	$sr=~tr/a-z/A-Z/;  ## Translate small case to Capitalized case
 	my ($sev,$it,$coi);
 	if ($sr=~/NA/){
@@ -104,7 +100,7 @@ sub convert_sr{
 		# doulbe the first severity reading and the first response reading, and take the weighted average
 	}elsif ($sr=~/(\d+)([R|S|M]+)/){
 		#print "$1\t$2\tna\tna\n";
-		$sev=$1;$it=convert_mrs($2);$coi=$sev*$it;
+		$sev=$1;$it=&convert_mrs($2);$coi=$sev*$it;
 		### This says, if the reading only has one reading (not segregating); then simply sev=sev; coi equals coi
 	}else {
 		#print "$sr not matched\n"
@@ -125,27 +121,34 @@ sub convert_sr{
 #4. This is the main program to convert pheno rust 1 and rust 2 and insert 3 columns at the end)...
 my $file=$pheno; 
 my ($prefix,$file_out); $prefix=$file; $prefix=~s/\.txt//;  $file_out=$prefix . "_out" . ".txt";
-my ($col1,$col2); ## use these two variables to store the information of 1st and 2nd reading; again, please note that col numbers counting starts from 0 instead of 1
-if ($columns=~/(\d+)\,(\d+)/){$col1=$1; $col2=$2} else {die "where are your columns for phenotype reading?\n"};
+my @cols;
+if ($columns=~/,/) {@cols=split (/,/, $columns)}else {print "you need to speciy comma separated column numbers\n"; exit;};
+
 
 open (INPUT, "< $file");
 open (OUT, "> $file_out");
 
 my $header=<INPUT>; #Take header; please comment out this line (by putting a hash sign "#" in front of it) if there is no header line in your file(s)....
-my $new_header= "Prefix\tSeverity\tResponse\tCOI\t$header";
-print OUT "$new_header";
+my @spl_head=split(/\t/,$header);  ## splitting the header using tabs
+
+foreach (@cols){
+	my $col=$_; $col=~s/[\r|\n]//g;
+	my $orig_head = $spl_head[$col]; 
+	$spl_head[$_]="$orig_head\t$orig_head.sev\t$orig_head.it\t$orig_head.coi";
+}
+
+my $join_spl_header=join("\t",@spl_head);
+print OUT "$join_spl_header";
+
 
 while (<INPUT>){
 	my $line =$_; $line=~s/[\r|\n]//g; 
 	my @F=split (/\t/, $line);
-	my ($rust1,$rust2)=@F[$col1,$col2];
-	if ($rust2!~/NA/i){
-		my $read2=&convert_sr($rust2);
-		print OUT "$prefix\t$read2\t$line\n";	
-		## This says, if there is a second reading, use that one as the reading for the genotype/line
-	}else{
-		my $read1=convert_sr($rust1); 
-		print OUT "$prefix\t$read1\t$line\n";
-		## This says, if there is no second reading, or 2nd reading is NA, use the first reading
-	};
+	for my $col (@cols) {
+		my $orig_rust=$F[$col]; ###?
+		my $num_rust = &convert_sr($orig_rust); 
+		$F[$col] = "$orig_rust\t$num_rust";  ##?
+	} 
+	my $new_line = join ("\t", @F);
+	print OUT "$new_line\n";
 }
