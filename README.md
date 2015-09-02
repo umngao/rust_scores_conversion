@@ -27,7 +27,6 @@ Usage 1 is for conversion of a single trait yet with two readings at different t
 
 The scales for adult plant rust response types are based on published Stubbs 1986 CIMMYT mannual. The calculation of severity, response and coeficient of infection are similarly double weighted by the first reading. 
 
-Both the two programs are designed to take two input files (not just one phenotype file). The typo files (in both seedling and adult plant data conversion) allow more flexible and automatic control of data conversion. That said, I want to make it clear that the program is already written to avoid ambiguous regular expression matches, so even if the users simply provide a blank typo files or the same one as supplied with our example data, the conversion should perform smoothly for almost all the cases.
 
 The author might consider rewrite the programs in Python, and implement the methods in an R function. If you use this script, or borrowed some of the methods for data conversion or algorithem designs, please cite an abstract or publication: "Gao, L., Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. 2015 Genome wide association study (GWAS) of seedling and adult plant leaf rust resistance in elite wheat breeding lines. "
 
