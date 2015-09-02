@@ -21,6 +21,9 @@ My method differs from the Zhang et al PlosOne 2014 9(7) in the following:
 (2). Adult plant rust data conversion
 
 usage: perl convert_rust_reading.field.pl --typo typo.field.txt --pheno TCAP_field1.txt --columns 5,7
+usage: perl convert_rust_reading.field.multiplex.pl --typo typo.field.txt --pheno YOUR_PHENO_FILE.txt --columns 5,7,9,10,11 
+
+The differences between the two field data conversion scripts: The first one is for conversion of a single trait yet with two readings at different time of the years; the second is for conversion of multiple traits or the same trait under multiple environments. The first one only takes two readings; the second one (just like the seedling phenotype data) can take large number of columns or readings...
 
 The scales for adult plant rust response types are based on published Stubbs 1986 CIMMYT mannual. The calculation of severity, response and coeficient of infection are similarly double weighted by the first reading. The adult plant data requires the data to be formated into two readings (two columns); if there is a second reading, 2nd reading will be used to replace the 1st reading.
 
