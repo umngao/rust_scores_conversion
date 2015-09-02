@@ -20,9 +20,8 @@ My method differs from the Zhang et al PlosOne 2014 9(7) in the following:
 
 (2). Adult plant rust data conversion
 
-usage: perl convert_rust_reading.field.pl --typo typo.field.txt --pheno TCAP_field1.txt --columns 5,7
-
-usage: perl convert_rust_reading.field.multiplex.pl --typo typo.field.txt --pheno pheno_LrAM381_summary_Liang2015.txt  --columns 3,4,5,6,7
+usage 1: perl convert_rust_reading.field.pl --typo typo.field.txt --pheno TCAP_field1.txt --columns 5,7
+usage 2: perl convert_rust_reading.field.multiplex.pl --typo typo.field.txt --pheno pheno_LrAM381_summary_Liang2015.txt  --columns 3,4,5,6,7
 
 The differences between the two field data conversion scripts: The first one is for conversion of a single trait yet with two readings at different time of the years, 2nd reading will replace the first reading; the second is for conversion of multiple traits or the same trait under multiple environments. The first one only takes two readings; the second one (just like the seedling phenotype data) can take large number of columns or readings...
 
