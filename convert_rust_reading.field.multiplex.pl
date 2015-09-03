@@ -3,24 +3,7 @@ use strict;
 use Getopt::Long;
 use List::Util qw (sum);
 
-####This is the "convert.rust_reading.field.pl" V1 ###Conversion method proposed by Dr. Matt Rouse, by double weight the first rust reading
-#### Written bY Liangliang Gao (University of Minnesota) 6/22/2015; 
-#Please cite Gao et al. GWAS paper (to be published, be patient) when using this script 
-#This program takes a table of leaf or stem rust phenotype reading (field) and insert 3 columns to it (severity, response and COI). 
-#This program is intended for technicians or rust researchers who have zero or little knowledge about perl or unix
-#To use it, simply download this script to any linux system and type the command lines such as  "perl convert_rust_reading.field.pl --typo sr.typo.txt --pheno TCAP_field1.txt --columns 5,7"
-
-#This program requires two tab-delimited files (easily produced by copying from excel ...); 
-#Attention: It cannot directly take excel files; you must save your data into one or multiple .txt files
-#(1) A human typo file to convert typos to standardized readings; the typo file should have two columns; 
-	# col1 is your original typos; col2 is the thing that you want it to be; 
-	# For exmaple, if you accidentally put 'Mr.Gao' into the reading, you can tell the program to treat it as 'na'; 
-	# so the program won't somehow interpret it as "moderately resistant .Gao"; and come up with some numbers that don't make sense... The author tried his best to avoid any ambiguity in regular expression matching; However, it is still possible that someone typed something very "interesting and deceiving"; Thus, please use a typo file to correct that
-#(2) The main phenotype file (need to tell the program which two columns are your phenotype readings to be converted; 
-	# Pay special attention that Perl is different than some other languages such as R; 
-	# It counts from 0, so --columns 5,7 means that the phenotype readings are in columns 6,8; 
-	# The second reading (e.g. col 8) will be used to replace the 1st reading (given that there is a 2nd reading); 
-	# You can always add an empty column full of 'NA' as the second reading
+# This is a modifed script for "convert.rust.reading.field.pl" to add multiplexibility to it. So, now it takes practically unlimited columns of field rust traits.
 
 if ($#ARGV <5){ die "usage: perl convert_rust_reading.field.pl --typo typo.field.txt --pheno TCAP_field1.txt --columns 5,7"};
 ########## This line tells people that if the required files were not supplied, it will quit or die and ask for the required files; i.e., You must provide --typo, --pheno, and --columns to the program, this program force you to do so (sorry for inconvenience, you can easily write your own, if you know a little bit about perl, and make it less strict);
