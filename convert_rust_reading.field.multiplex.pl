@@ -112,6 +112,7 @@ open (INPUT, "< $file");
 open (OUT, "> $file_out");
 
 my $header=<INPUT>; #Take header; please comment out this line (by putting a hash sign "#" in front of it) if there is no header line in your file(s)....
+$header=~s/[\r|\n]//g; #### remove extra new lines
 my @spl_head=split(/\t/,$header);  ## splitting the header using tabs
 
 foreach (@cols){

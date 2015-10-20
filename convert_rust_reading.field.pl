@@ -132,6 +132,7 @@ open (INPUT, "< $file");
 open (OUT, "> $file_out");
 
 my $header=<INPUT>; #Take header; please comment out this line (by putting a hash sign "#" in front of it) if there is no header line in your file(s)....
+$header=~s/[\r|\n]//g; ### remove extra new line characters if any
 my $new_header= "Prefix\tSeverity\tResponse\tCOI\t$header";
 print OUT "$new_header";
 
