@@ -122,7 +122,7 @@ foreach (@cols){
 }
 
 my $join_spl_header=join("\t",@spl_head);
-print OUT "$join_spl_header";
+print OUT "$join_spl_header\n";
 
 
 while (<INPUT>){

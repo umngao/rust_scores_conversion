@@ -126,7 +126,7 @@ foreach (@cols){
 
 
 my $join_spl_header=join("\t",@spl_head);
-print OUT "$join_spl_header";
+print OUT "$join_spl_header\n";
 #### Then join the header again and print it to file > file_out.txt
 
 ## Now do the same thing for each actual data
