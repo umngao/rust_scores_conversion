@@ -31,7 +31,7 @@ GetOptions ("typo=s"=>\$typo, "pheno=s"=>\$pheno, "columns=s"=>\$columns);
 sub convert_typo {
 	open (IN, "< $typo"); ## 1st col typo 2nd col tstandard ...
 	my %hash_typo;
-	while (<IN>){$_=~s/[\r|\n]//g; my @F=split "\t"; if (@F == 2){$hash_typo{$F[0]}=$F[1]}}; 
+	while (<IN>){$_=~s/\r|\n//g; my @F=split "\t"; if (@F == 2){$hash_typo{$F[0]}=$F[1]}}; 
 	my $input=$_[0]; my $output="";
 	if ($input eq ""){$input ="NA"};
 	if (exists $hash_typo{$input}){$output=$hash_typo{$input}}else{$output=$input};
@@ -77,7 +77,7 @@ sub convert_mrs{
 
 #3  conversion of readings to numeric...
 sub convert_sr{	
-	my $sr=$_[0]; $sr=~s/[\r|\n]//g;
+	my $sr=$_[0]; $sr=~s/\r|\n//g;
 	my $orig_sr=$sr;
 	$sr=&convert_typo($sr);
 	$sr=~s/(Trace)|(Tr)|(T)/2/g; #### Here, we are replacing Trace and T readings into 2, which can be modified to be 1 or other small numbers
@@ -132,12 +132,12 @@ open (INPUT, "< $file");
 open (OUT, "> $file_out");
 
 my $header=<INPUT>; #Take header; please comment out this line (by putting a hash sign "#" in front of it) if there is no header line in your file(s)....
-$header=~s/[\r|\n]//g; ### remove extra new line characters if any
+$header=~s/\r|\n//g; ### remove extra new line characters if any
 my $new_header= "Prefix\tSeverity\tResponse\tCOI\t$header";
 print OUT "$new_header\n";
 
 while (<INPUT>){
-	my $line =$_; $line=~s/[\r|\n]//g; 
+	my $line =$_; $line=~s/\r|\n//g; 
 	my @F=split (/\t/, $line);
 	my ($rust1,$rust2)=@F[$col1,$col2];
 	if ($rust2!~/NA/i){

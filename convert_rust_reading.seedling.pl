@@ -32,7 +32,7 @@ GetOptions ("typo=s"=>\$typo, "pheno=s"=>\$pheno, "columns=s"=>\$columns);
 sub convert_typo {
 	open (IN, "< $typo"); ## 1st col typo 2nd col standard ...
 	my %hash_typo;
-	while (<IN>){$_=~s/[\r|\n]//g; my @F=split "\t"; if (@F ==2) {$hash_typo{$F[0]}=$F[1]}}; 
+	while (<IN>){$_=~s/\r|\n//g; my @F=split "\t"; if (@F ==2) {$hash_typo{$F[0]}=$F[1]}}; 
 	my $input=$_[0]; my $output="";
 	if (exists $hash_typo{$input}){$output=$hash_typo{$input}}else{$output=$input};
 	return $output;
@@ -43,7 +43,7 @@ sub convert_typo {
 ########### This is a function/subroutine for infection type (IT) numerically scaled;
 #2  conversion of infection type (IT) to numeric...
 sub convert_IT{	
-	my $it=$_[0]; $it=~s/[\r|\n]//g;
+	my $it=$_[0]; $it=~s/\r|\n//g;
 	my $orig_it=$it;
 	$it=&convert_typo($it);
 	my $num_IT;
@@ -114,11 +114,11 @@ open (INPUT, "< $file");
 open (OUT, "> $file_out");
 
 my $header=<INPUT>; #Take header; please comment out this line (by putting a hash sign "#" in front of it) if there is no header line in your file(s)....
-$header=~s/[\r|\n]//g; ### remove extra new line characters (if any)
+$header=~s/\r|\n//g; ### remove extra new line characters (if any)
 my @spl_head=split(/\t/,$header);  ## splitting the header using tabs
 
 foreach (@cols){
-	my $col=$_; $col=~s/[\r|\n]//g;
+	my $col=$_; $col=~s/\r|\n//g;
 	my $orig_head = $spl_head[$col]; my $num_head=$spl_head[$col].".num"; 
 	$spl_head[$_]="$orig_head\t$num_head";
 }
@@ -131,7 +131,7 @@ print OUT "$join_spl_header\n";
 
 ## Now do the same thing for each actual data
 while (<INPUT>){
-	my $line =$_; $line=~s/[\r|\n]//g; ## take the line and remove extra newline characters such as "\n" or "\r"
+	my $line =$_; $line=~s/\r|\n//g; ## take the line and remove extra newline characters such as "\n" or "\r"
 	my @F=split (/\t/, $line);  ## split each reading line using tabs
 	
 	##########################################
