@@ -5,7 +5,7 @@ use List::Util qw (sum);
 
 # This is a modifed script for "convert.rust.reading.field.pl" to add multiplexibility to it. So, now it takes practically unlimited columns of field rust traits.
 
-if ($#ARGV <5){ die "usage: perl convert_rust_reading.field.pl --typo typo.field.txt --pheno TCAP_field1.txt --columns 5,7"};
+if ($#ARGV <5){ die "usage: perl convert_rust_reading.field.pl --typo typo.field.txt --pheno pheno_LrAM381_summary_Liang2015.txt --columns 3,4,5,6,7"};
 ########## This line tells people that if the required files were not supplied, it will quit or die and ask for the required files; i.e., You must provide --typo, --pheno, and --columns to the program, this program force you to do so (sorry for inconvenience, you can easily write your own, if you know a little bit about perl, and make it less strict);
 my ($typo,$pheno,$columns);
 GetOptions ("typo=s"=>\$typo, "pheno=s"=>\$pheno, "columns=s"=>\$columns);
@@ -105,7 +105,7 @@ sub convert_sr{
 my $file=$pheno; 
 my ($prefix,$file_out); $prefix=$file; $prefix=~s/\.txt//;  $file_out=$prefix . "_out" . ".txt";
 my @cols;
-if ($columns=~/,/) {@cols=split (/,/, $columns)}else {print "you need to speciy comma separated column numbers\n"; exit;};
+if ($columns=~/,/) {@cols=split (/,/, $columns)} elsif($columns=~/\d+/){@cols=($columns)} else {print "you need to speciy comma separated column numbers\n"; exit;};
 
 
 open (INPUT, "< $file");
