@@ -24,5 +24,5 @@ This script is for conversion of multiple traits or the same trait under multipl
 
 The scales for adult plant rust response types are based on published Stubbs 1986 CIMMYT mannual. The calculation of severity, response and coeficient of infection are similarly double weighted by the first reading. 
 
-The author might consider rewrite the programs in Python, and implement the methods in an R function. If you use this script, or borrowed some of the methods for data conversion or algorithem designs, please cite an abstract or publication: "Gao, L., Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. (2016) Genome wide association study of seedling and adult plant leaf rust resistance in elite spring wheat breeding lines. PLoS One "
+The author might consider rewrite the programs in Python, and implement the methods in an R function. If you use this script, or borrowed some of the methods for data conversion or algorithem designs, please cite a publication: "Gao, L., Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. (2016) Genome wide association study of seedling and adult plant leaf rust resistance in elite spring wheat breeding lines. PLoS One 11:e0148671"
 
