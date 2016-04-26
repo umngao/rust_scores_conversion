@@ -26,4 +26,4 @@ The scales for adult plant rust response types are based on published Stubbs 198
 
 The author might consider rewrite the programs in Python, and implement the methods in an R function. If you use this script, or borrowed some of the methods for data conversion or algorithem designs, please cite a publication: "Gao, L., Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. (2016) Genome wide association study of seedling and adult plant leaf rust resistance in elite spring wheat breeding lines. PLoS One 11:e0148671"
 
-### An equivalent Python  script for seedling data conversion can be accessed here: https://github.com/umngao/misc_Python/blob/master/convert_rust_reading_seedling.py
+## An equivalent Python  script for seedling data conversion can be accessed here: https://github.com/umngao/misc_Python/blob/master/convert_rust_reading_seedling.py
