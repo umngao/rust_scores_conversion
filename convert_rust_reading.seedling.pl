@@ -20,7 +20,7 @@ use List::Util qw (sum);  ## This enables the use of some functions such as "max
 	# It counts from 0, so --columns 5,7 means that the phenotype readings are in columns 6,8; 
 	
 
-if ($#ARGV <5){ die "usage: perl convert_rust_reading.field.pl --typo typo.seedling.txt --pheno TCAP_seedling.txt --columns 5,7,9,11,13,15,17"};
+if ($#ARGV <5){ die "usage: perl convert_rust_reading.field.pl --typo sample_data_seedling/typo.seedling.txt --pheno sample_data_seedling/TCAP_seedling.txt --columns 5,7,9,11,13,15,17"};
 ########## This line tells people that if the required files were not supplied, it will quit or die and ask for the required files; 
 ### i.e., You must provide --typo, --pheno, and --columns to the program, this program force you to do so 
 ### (sorry for inconvenience, you can easily write your own or modify this script, if you know a little bit about perl, and make it less strict and do more;
@@ -108,7 +108,16 @@ sub convert_IT{
 #3. This is the main program to convert seedling pheno (IT) and insert one additional column following each original data reading
 my $file=$pheno; 
 my ($prefix,$file_out); $prefix=$file; $prefix=~s/\.txt//;  $file_out=$prefix . "_out" . ".txt";
-my @cols=split (/,/, $columns);
+
+$columns =~s/\s+//g;    ### remove extra spaces in columns
+my @cols;
+if ($columns=~/,/){
+	@cols=split (/,/, $columns);
+}else {
+	@cols = ($columns)
+}
+
+print @cols;
 
 open (INPUT, "< $file");
 open (OUT, "> $file_out");
