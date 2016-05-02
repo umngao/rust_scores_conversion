@@ -2,7 +2,7 @@ I wrote two small perl programs/scripts that can convert tables of rust readings
 
 ### Note 1: Following the convention in perl, the column numbers are counted from zero, thus, 5,7,9 ... means columns 6,8,10 .....etc.
 ### Note 2: Some people came across an error trying to work with Mac version text files. This error is related with different line breaks across different operating systems. A simple fix would be to save your Mac version of excel tab of phenotype data as "windows formated text (.txt)", or convert the text using textWrangler or BBedit tools.
-### Note 3: It is recommended that you replace empty cells with NA or any other characters instead of leaving them blank. 
+
 
 
 (1). seedling data conversion 
@@ -27,3 +27,5 @@ The scales for adult plant rust response types are based on published Stubbs 198
 The author might consider rewrite the programs in Python, and implement the methods in an R function. If you use this script, or borrowed some of the methods for data conversion or algorithem designs, please cite a publication: "Gao, L., Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. (2016) Genome wide association study of seedling and adult plant leaf rust resistance in elite spring wheat breeding lines. PLoS One 11:e0148671"
 
 ####### An equivalent Python  script for seedling data conversion can be accessed here: https://github.com/umngao/misc_Python/blob/master/convert_rust_reading_seedling.py
+####### An equivalent Python  script for field data conversion can be accessed here:   https://github.com/umngao/misc_Python/blob/master/convert_rust_reading_field.py
+
