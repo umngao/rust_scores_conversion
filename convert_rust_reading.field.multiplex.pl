@@ -130,6 +130,7 @@ print OUT "$join_spl_header\n";
 while (<INPUT>){
 	my $line =$_; $line=~s/\r|\n//g; 
 	my @F=split (/\t/, $line);
+	if (@F ==0){next}  ### skip empty lines
 	for my $col (@cols) {
 		my $orig_rust=$F[$col]; ###?
 		my $num_rust = &convert_sr($orig_rust); 
