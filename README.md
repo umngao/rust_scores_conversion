@@ -1,7 +1,6 @@
 I wrote two small perl programs/scripts that can convert tables of rust readings into numeric numbers according to published scales. In case of complex readings such as seedling reading ";1242-3+" a double weighting of the first reading was used for mean calculation. For adult plant rust data conversion, a similar double weighting method was proposed by Dr. Matt Rouse (USDA-CDL) and implemented in our programs.
 
 ### Note 1: Following the convention in perl, the column numbers are counted from zero, thus, 5,7,9 ... means columns 6,8,10 .....etc.
-### Note 2: Some people came across an error trying to work with Mac version text files. This error is related with different line breaks across different operating systems. A simple fix would be to save your Mac version of excel tab of phenotype data as "windows formated text (.txt)", or convert the text using textWrangler or BBedit tools.
 
 
 
