@@ -6,7 +6,7 @@ I wrote two small perl programs/scripts that can convert tables of rust readings
 
 (1). seedling data conversion 
 
-usage: perl convert_rust_reading.seedling.pl --typo typo.seedling.txt --pheno TCAP_seedling.txt --columns 5,7,9,11,13,15,17
+usage: perl convert_rust_reading.seedling.pl --typo sample_data_seedling/typo.seedling.txt --pheno sample_data_seedling/TCAP_seedling.txt --columns 5,7,9,11,13,15,17
 
 My method differs from the Zhang et al PlosOne 2014 9(7) in the following:
 (1) It tolerates unlimited number of segregations in your reading such as ";123-3+422+33333-33-";
@@ -17,7 +17,7 @@ My method differs from the Zhang et al PlosOne 2014 9(7) in the following:
 (2). Adult plant rust data conversion
 
 
-usage : perl convert_rust_reading.field.multiplex.pl --typo typo.field.txt --pheno pheno_LrAM381_summary_Liang2015.txt  --columns 3,4,5,6,7
+usage : perl convert_rust_reading.field.multiplex.pl --typo sample_data_field/typo.field.txt --pheno sample_data_field/pheno_LrAM381_summary_Liang2015.txt  --columns 3,4,5,6,7
 
 This script is for conversion of multiple traits or the same trait under multiple environments. Usage 2 (just like the seedling phenotype data conversion script) can take practically unlimitted number of columns or readings.
 
