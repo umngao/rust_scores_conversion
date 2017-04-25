@@ -19,7 +19,7 @@ My method differs from the Zhang et al PlosOne 2014 9(7) in the following:
 
 usage : perl convert_rust_reading.field.multiplex.pl --typo sample_data_field/typo.field.txt --pheno sample_data_field/pheno_LrAM381_summary_Liang2015.txt  --columns 3,4,5,6,7
 
-This script is for conversion of multiple traits or the same trait under multiple environments. Usage 2 (just like the seedling phenotype data conversion script) can take practically unlimitted number of columns or readings.
+This script is for conversion of multiple traits or the same trait under multiple environments. The field data conversion script (just like the seedling phenotype data conversion script) can take practically unlimitted number of columns or readings.
 
 The scales for adult plant rust response types are based on published Stubbs 1986 CIMMYT mannual. The calculation of severity, response and coeficient of infection are similarly double weighted by the first reading. 
 

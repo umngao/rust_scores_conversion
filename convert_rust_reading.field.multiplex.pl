@@ -61,38 +61,49 @@ sub convert_sr{
 	$sr=&convert_typo($sr);
     $sr=~s/^t/T/g; ### beginning T should be capitalized .... Note Tr(ace) vs TR
 	$sr=~s/(Trace)|(Tr)|(T)/2/g; #### Here, we are replacing Trace and T readings into 2, which can be modified to be 1 or other small numbers
-	$sr=~s/[\/|\s+]//g; 
-	$sr=~tr/a-z/A-Z/;  ## Translate small case to Capitalized case
+	$sr=~s/\s+//g; 
+	$sr=~tr/a-z/A-Z/;  
 	my ($sev,$it,$coi);
-	if ($sr=~/NA/){
-		#print "NA\tNA\tNA\tNA\n";
-		$sev='NA';$it='NA';$coi='NA';	
-		#### This is easy to understand, since NA is the field value, everything will be NA
-	}elsif ($sr!~/\d/){
-		#print "NA\t$sr\tNA\tNA\n";
-		$sev='NA';$it=&convert_mrs($sr);$coi='NA';
-		#### This says, if the reading does not contain any numbers, only response type (M,R,S) will be calculated
-	}elsif ($sr!~/[R|M|S]/){
-		#print "$sr\tNA\tNA\tNA\n"
-		$sev=$sr;$it='NA';$coi='NA';
-		### This says, if the reading does not contain any R, or M or S init, then only severity will be calculated
-	}elsif ($sr=~/(\d+)([R|S|M]+)(\d+)([M|R|S]+)/){
-		# print "$1\t$2\t$3\t$4\n"
-		$sev=($1*2+$3)/3; my ($it1,$it2)=(&convert_mrs($2),&convert_mrs($4)); 
-		$it=($it1*2+$it2)/3;$coi=$sev*$it;  
-		### This says, if the reading contains segregating readings such as 35MR80S, it will 
-		# doulbe the first severity reading and the first response reading, and take the weighted average
-	}elsif ($sr=~/(\d+)([R|S|M]+)/){
-		#print "$1\t$2\tna\tna\n";
-		$sev=$1;$it=&convert_mrs($2);$coi=$sev*$it;
-		### This says, if the reading only has one reading (not segregating); then simply sev=sev; coi equals coi
+	if ($sr=~/(\d+)[\/|\\]+(\d+)([M|R|S]+)/){
+		$sev = ($1*2+$2)/3;
+		$it=&convert_mrs($3);
+		$coi = $sev*$it;
+	}elsif ($sr=~/(\d+)[\/|\\]+(\d+)/){
+		$sev = ($1*2+$2)/3;
+		$it = "NA";
+		$coi = "NA"
 	}else {
-		#print "$sr not matched\n"
-		$sev="NA";$it="NA";$coi="NA";
-		## This says, if the reading has neither 'NA', nor any number, any combination of number and response in less than 3 segregation types; 
-		# Replacing it with NA and report everything as NA
-	}
-	#print "$orig_sr\t$sev\t$it\t$coi\n";
+		$sr=~s/[\/|\\]+//g;
+		## Translate small case to Capitalized case
+		if ($sr=~/NA/){
+			#print "NA\tNA\tNA\tNA\n";
+			$sev='NA';$it='NA';$coi='NA';	
+			#### This is easy to understand, since NA is the field value, everything will be NA
+		}elsif ($sr!~/\d/){
+			#print "NA\t$sr\tNA\tNA\n";
+			$sev='NA';$it=&convert_mrs($sr);$coi='NA';
+			#### This says, if the reading does not contain any numbers, only response type (M,R,S) will be calculated
+		}elsif ($sr!~/[R|M|S]/){
+			#print "$sr\tNA\tNA\tNA\n"
+			$sev=$sr;$it='NA';$coi='NA';
+			### This says, if the reading does not contain any R, or M or S init, then only severity will be calculated
+		}elsif ($sr=~/(\d+)([R|S|M]+)(\d+)([M|R|S]+)/){
+			# print "$1\t$2\t$3\t$4\n"
+			$sev=($1*2+$3)/3; my ($it1,$it2)=(&convert_mrs($2),&convert_mrs($4)); 
+			$it=($it1*2+$it2)/3;$coi=$sev*$it;  
+			### This says, if the reading contains segregating readings such as 35MR80S, it will 
+			# doulbe the first severity reading and the first response reading, and take the weighted average
+		}elsif ($sr=~/(\d+)([R|S|M]+)/){
+			#print "$1\t$2\tna\tna\n";
+			$sev=$1;$it=&convert_mrs($2);$coi=$sev*$it;
+			### This says, if the reading only has one reading (not segregating); then simply sev=sev; coi equals coi
+		}else {
+			#print "$sr not matched\n"
+			$sev="NA";$it="NA";$coi="NA";
+			## This says, if the reading has neither 'NA', nor any number, any combination of number and response in less than 3 segregation types; 
+			# Replacing it with NA and report everything as NA
+		}
+	}#print "$orig_sr\t$sev\t$it\t$coi\n";
 	if ($sev!~/NA/){$sev=sprintf("%.2f",$sev)}; 
 	if ($it!~/NA/) {$it=sprintf("%.2f",$it)};
 	if ($coi!~/NA/){$coi=sprintf("%.2f",$coi)};
