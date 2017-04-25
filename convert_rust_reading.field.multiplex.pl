@@ -59,6 +59,7 @@ sub convert_sr{
 	my $sr=$_[0]; $sr=~s/\r|\n//g;
 	my $orig_sr=$sr;
 	$sr=&convert_typo($sr);
+    $sr=~s/^t/T/g; ### beginning T should be capitalized .... Note Tr(ace) vs TR
 	$sr=~s/(Trace)|(Tr)|(T)/2/g; #### Here, we are replacing Trace and T readings into 2, which can be modified to be 1 or other small numbers
 	$sr=~s/[\/|\s+]//g; 
 	$sr=~tr/a-z/A-Z/;  ## Translate small case to Capitalized case
