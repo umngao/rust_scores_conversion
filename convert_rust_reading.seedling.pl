@@ -108,8 +108,6 @@ sub convert_IT{
 #3. This is the main program to convert seedling pheno (IT) and insert one additional column following each original data reading
 my $file=$pheno; 
 my ($prefix,$file_out); $prefix=$file; $prefix=~s/\.txt//;  $file_out=$prefix . "_out" . ".txt";
-`perl -pi -e 's/\r\n/\n/g' $file`;
-`perl -pi -e 's/\r/\n/g' $file`;  ##### These two lines added 5/5/2016 to convert windows and mac newline to Unix newline
 
 $columns =~s/\s+//g;    ### remove extra spaces in columns
 my @cols;

@@ -1,7 +1,14 @@
 I wrote two small perl programs/scripts that can convert tables of rust readings into numeric numbers according to published scales. In case of complex readings such as seedling reading ";1242-3+" a double weighting of the first reading was used for mean calculation. For adult plant rust data conversion, a similar double weighting method was proposed by Dr. Matt Rouse (USDA-CDL) and implemented in our programs.
 
 ### Note 1: Following the convention in perl, the column numbers are counted from zero, thus, 5,7,9 ... means columns 6,8,10 .....etc.
-
+Also, if your files have line break characters that are not UNIX or windows standard, i.e, if it ends with carriage ^M, 
+To solve that, I initially put a couple of perl one liners to the scripts to convert line endings. However,
+I found that these two lines can create problems if you are using Git bash as your shell to run perl in Windows systems. 
+The better fix seem to be to run the perl one liners separately:
+    perl -p -e 's/\r\n/\n/g' file.txt > file.tmp1.txt
+    perl -p -e 's/\r/\n/g' file.tmp1.txt > file.tmp2.txt
+And use file.tmp2.txt as your input for the perl scripts convert_rust_readings....pl.
+Alternatively, use the Python script (caution: not extensively tested:-)). 
 
 
 (1). seedling data conversion 
@@ -23,8 +30,12 @@ This script is for conversion of multiple traits or the same trait under multipl
 
 The scales for adult plant rust response types are based on published Stubbs 1986 CIMMYT mannual. The calculation of severity, response and coeficient of infection are similarly double weighted by the first reading. 
 
-The author might consider rewrite the programs in Python, and implement the methods in an R function. If you use this script, or borrowed some of the methods for data conversion or algorithem designs, please cite a publication: "Gao, L., Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. (2016) Genome wide association study of seedling and adult plant leaf rust resistance in elite spring wheat breeding lines. PLoS One 11:e0148671"
+(3) Files ending with .py are python scripts. The execution of them are highly similar to those perl scripts. So no need to detail their usage here.
+I also created some private repositories, and disabled some previous links that point to those private repositories.
 
-####### An equivalent Python  script for seedling data conversion can be accessed here: https://github.com/umngao/misc_Python/blob/master/convert_rust_reading_seedling.py
-####### An equivalent Python  script for field data conversion can be accessed here:   https://github.com/umngao/misc_Python/blob/master/convert_rust_reading_field.py
+The author might consider implement the methods in an R function. If you use this script, or borrowed some of the methods for data conversion or algorithem designs, please cite a publication: "Gao, L., Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. (2016) Genome wide association study of seedling and adult plant leaf rust resistance in elite spring wheat breeding lines. PLoS One 11:e0148671"
+
+
+
+
 

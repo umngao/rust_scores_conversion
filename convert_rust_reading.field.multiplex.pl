@@ -115,8 +115,6 @@ sub convert_sr{
 #########################
 #4. This is the main program to convert pheno rust 1 and rust 2 and insert 3 columns at the end)...
 my $file=$pheno; 
-`perl -pi -e 's/\r\n/\n/g' $file`;
-`perl -pi -e 's/\r/\n/g' $file`;  #### These two lines added 5/5/2016 to convert Windows and Mac newline file to Unix newline file. 
 my ($prefix,$file_out); $prefix=$file; $prefix=~s/\.txt//;  $file_out=$prefix . "_out" . ".txt";
 my @cols;
 if ($columns=~/,/) {@cols=split (/,/, $columns)} elsif($columns=~/\d+/){@cols=($columns)} else {print "you need to speciy comma separated column numbers\n"; exit;};
