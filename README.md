@@ -25,7 +25,7 @@ The scales for adult plant rust response types are based on published Stubbs 198
 (3) Files ending with .py are python scripts. The execution of them are highly similar to those perl scripts. So no need to detail their usage here.
 I also created some private repositories, and disabled some previous links that point to those private repositories.
 
-The author might consider implement the methods in an R function. If you use this script, or borrowed some of the methods for data conversion or algorithem designs, please cite a publication: "**Gao, L.**, Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. (2016) Genome wide association study of seedling and adult plant leaf rust resistance in elite spring wheat breeding lines. PLoS One 11:e0148671"       [Link to Gao et al 2016 PloS One article](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148671)
+The author might consider implement the methods in an R function. If you use this script, or borrowed some of the methods for data conversion or algorithem designs, please cite a publication: "**Gao, L.**, Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. (2016)  ***Genome wide association study of seedling and adult plant leaf rust resistance in elite spring wheat breeding lines.*** PLoS One 11:e0148671"       [Link to Gao et al 2016 PloS One article](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148671)
 
 
 
