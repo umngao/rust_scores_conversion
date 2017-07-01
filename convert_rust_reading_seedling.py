@@ -51,11 +51,13 @@ def convert_IT (IT):
     IT = IT.replace('\r\n','')
     orig_it = IT
     IT = convert_typo(IT)
+    IT = IT.upper()
     if re.search('NA',IT):
         num_IT = "NA"
     elif re.search('[01234\;]',IT):
         IT = re.sub('\s+',"", IT)
         IT = re.sub ('\/',"", IT)
+        IT = re.sub(r'[A-Z]','',IT) ## fix a minor bug, there should not be letters....rm all
         IT = IT.replace("1-", 'a')
         IT = IT.replace("1+", 'b')
         IT = IT.replace("2-", 'c')
