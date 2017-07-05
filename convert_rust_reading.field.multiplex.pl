@@ -7,8 +7,14 @@ use List::Util qw (sum);
 
 if ($#ARGV <5){ die "usage: perl convert_rust_reading.field.multiplex.pl --typo sample_data_field/typo.field.txt --pheno sample_data_field/pheno_LrAM381_summary_Liang2015.txt --columns 3,4,5,6,7"};
 ########## This line tells people that if the required files were not supplied, it will quit or die and ask for the required files; i.e., You must provide --typo, --pheno, and --columns to the program, this program force you to do so (sorry for inconvenience, you can easily write your own, if you know a little bit about perl, and make it less strict);
+
 my ($typo,$pheno,$columns);
 GetOptions ("typo=s"=>\$typo, "pheno=s"=>\$pheno, "columns=s"=>\$columns);
+
+die "input_typo_file[$typo] is not there, please specify a typo file, you can use the provided typo file within sample_data folders\n" unless -s $typo;
+die "input_pheno_file[$pheno] is not there\n" unless -s $pheno;
+die "input_columns[$columns] is not there, you must specify columns data to be converted in coma separated fashion such as '3,4,5'\n" unless $columns=~ m/[\d]/;
+
 
 #1  pick out the typos or strange codes and convert them to standard codes... stored in a file called sr.na
 sub convert_typo {

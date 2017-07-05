@@ -28,6 +28,12 @@ if ($#ARGV <5){ die "usage: perl convert_rust_reading.seedling.pl --typo sample_
 my ($typo,$pheno,$columns);
 GetOptions ("typo=s"=>\$typo, "pheno=s"=>\$pheno, "columns=s"=>\$columns);
 
+die "input_typo_file[$typo] is not there, please specify a typo file, you can use the provided typo file within sample_data folders\n" unless -s $typo;
+die "input_pheno_file[$pheno] is not there\n" unless -s $pheno;
+die "input_columns[$columns] is not there, you must specify columns data to be converted in coma separated fashion such as '3,4,5'\n" unless $columns=~ m/[\d]/;
+
+
+
 #1  This is a function or subroutine to pick out the typos or strange codes and convert them to standard codes... stored in a file called human.typo.txt
 sub convert_typo {
     open (IN, "< $typo"); ## 1st col typo 2nd col standard ...
