@@ -1,1 +1,5 @@
 ./sample_data*/mac*.txt
+*.Rproj
+*.Rproj*/**/*
+*.RData
+*.Rhistory
