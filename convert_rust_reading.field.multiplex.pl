@@ -5,7 +5,7 @@ use List::Util qw (sum);
 
 # This is a modifed script for "convert.rust.reading.field.pl" to add multiplexibility to it. So, now it takes practically unlimited columns of field rust traits.
 
-if ($#ARGV <5){ die "usage: perl convert_rust_reading.field.multiplex.pl --typo sample_data_field/typo.field.txt --pheno sample_data_field/pheno_LrAM381_summary_Liang2015.txt --columns 3,4,5,6,7"};
+if (@ARGV != 6){ die "usage: perl convert_rust_reading.field.multiplex.pl --typo sample_data_field/typo.field.txt --pheno sample_data_field/pheno_LrAM381_summary_Liang2015.txt --columns 3,4,5,6,7"};
 ########## This line tells people that if the required files were not supplied, it will quit or die and ask for the required files; i.e., You must provide --typo, --pheno, and --columns to the program, this program force you to do so (sorry for inconvenience, you can easily write your own, if you know a little bit about perl, and make it less strict);
 
 my ($typo,$pheno,$columns);
@@ -20,7 +20,7 @@ die "input_columns[$columns] is not there, you must specify columns data to be c
 sub convert_typo {
 	open (IN, "< $typo"); ## 1st col typo 2nd col tstandard ...
 	my %hash_typo;
-	while (<IN>){$_=~s/\r|\n//g; my @F=split "\t"; if (@F == 2){$hash_typo{$F[0]}=$F[1]}}; 
+	while (<IN>){$_=~s/\r|\n//g; my @F=split "\t"; if (@F >= 2){$hash_typo{$F[0]}=$F[1]}}; 
 	my $input=$_[0]; my $output="";
 	if ($input eq ""){$input = 'NA'};
 	if (exists $hash_typo{$input}){$output=$hash_typo{$input}}else{$output=$input};

@@ -20,7 +20,7 @@ use List::Util qw (sum);  ## This enables the use of some functions such as "max
     # It counts from 0, so --columns 5,7 means that the phenotype readings are in columns 6,8; 
     
 
-if ($#ARGV <5){ die "usage: perl convert_rust_reading.seedling.pl --typo sample_data_seedling/typo.seedling.txt --pheno sample_data_seedling/TCAP_seedling.txt --columns 5,7,9,11,13,15,17"};
+if (@ARGV != 6){ die "usage: perl convert_rust_reading.seedling.pl --typo sample_data_seedling/typo.seedling.txt --pheno sample_data_seedling/TCAP_seedling.txt --columns 5,7,9,11,13,15,17"};
 ########## This line tells people that if the required files were not supplied, it will quit or die and ask for the required files; 
 ### i.e., You must provide --typo, --pheno, and --columns to the program, this program force you to do so 
 ### (sorry for inconvenience, you can easily write your own or modify this script, if you know a little bit about perl, and make it less strict and do more;
@@ -40,7 +40,7 @@ sub convert_typo {
     my %hash_typo;
     while (<IN>){$_=~s/\r|\n//g; 
     my @F=split "\t"; 
-    if (@F ==2) {
+    if (@F >= 2) {
         $hash_typo{$F[0]}=$F[1]}
     }; 
     my $input=$_[0]; my $output="";
