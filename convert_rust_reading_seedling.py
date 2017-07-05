@@ -1,31 +1,34 @@
 #!/usr/bin/env python
-
+import os
 import re
 import sys
-import getopt
+import argparse
 
-opts, args = getopt.getopt(sys.argv[1:], 't:p:c', ['typo_f=','PHENO=','cols='])
+parser = argparse.ArgumentParser (description = "python convert_rust_reading_seedling.py --typo sample_data_seedling/typo.seedling.txt --PHENO  sample_data_seedling/TCAP_seedling.txt --columns 7,9")
+parser.add_argument ('-t','--typo_f', help ="typo file, you can use the one supplied in the sample data folder")
+parser.add_argument ('-p', '--PHENO', help ="phenotype file, tab delimited, ending with .txt, see sample_data for example")
+parser.add_argument ('-c', '--columns', help ="columns of data to be converted, should be comma delimited, such as '3,4,5'")
 
-def usage():
-    print "python convert_rust_reading_seedling.py --typo sample_data_seedling/typo.seedling.txt --PHENO  sample_data_seedling/TCAP_seedling.txt --cols 7,9"
-    
-if len(opts)<2:  ### if there are less than 2 arguments, exit and print usage
-    usage()
-    sys.exit(2)
-    
-for opt, arg in opts:
-    if opt in ('-h', '--help'):
-        usage()
-        sys.exit(2)
-    elif opt in ('-t','--typo_f'):
-        typo_f = arg
-    elif opt in ('-p', '--PHENO'):
-        PHENO = arg
-    elif opt in ('-c', '--cols'):
-        cols = arg
-    else:
-        usage()
-        sys.exit(2)
+if len(sys.argv)==1:
+    parser.print_help()
+    sys.exit(1)
+
+args = parser.parse_args()
+
+if os.path.exists(args.typo_f) and os.path.getsize(args.typo_f) > 0:
+    typo_f=args.typo_f
+else:
+    sys.exit('the typo file is not thre! you can use the one in sample data folder')
+if os.path.exists(args.PHENO) and os.path.getsize(args.PHENO) > 0:
+    PHENO=args.PHENO
+else:
+    sys.exit('the phenotype file is not thre! provide tab delimited pheno file, ending .txt')
+if re.search(r'[0-9]',args.columns):
+    cols=args.columns
+else:
+    sys.exit("he columns should be specified! use coma separated values such as '3,4,5'")
+
+
 
 ###### 1. typo conversion
 
