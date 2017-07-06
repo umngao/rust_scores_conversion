@@ -22,10 +22,10 @@ This script is for conversion of multiple traits or the same trait under multipl
 
 The scales for adult plant rust response types are based on published Stubbs 1986 CIMMYT mannual. The calculation of severity, response and coeficient of infection are similarly double weighted by the first reading. 
 
-(3) Files ending with .py are python scripts. The execution of them are highly similar to those perl scripts. So no need to detail their usage here.
-I also created some private repositories, and disabled some previous links that point to those private repositories.
+Files ending with ***.py*** are python scripts. The execution of them are highly similar to those perl scripts. So no need to detail their usage here. Folder ***R_version_of_scripts*** are the same functions rewritten in R. These Python and R scripts do not produce identical results as the perl scripts. Some are due to rounding differences. All these scripts are provided in as-is situation. Since these scripts are dealing with mostly human typo errors, and there are almost infinite possibility of making mistakes. It is at the users own discretion whether the scripts should be modified for certain needs...   
 
-The author might consider implement the methods in an R function. If you use this script, or borrowed some of the methods for data conversion or algorithem designs, please cite a publication: "**Gao, L.**, Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. (2016)  ***Genome wide association study of seedling and adult plant leaf rust resistance in elite spring wheat breeding lines.*** PLoS One 11:e0148671"       [Link to Gao et al 2016 PloS One article](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148671)
+
+If you use these scripts, or borrowed some of the methods for data conversion or algorithem designs, please cite a publication: "**Gao, L.**, Turner, M. K., Chao S., Kolmer, J. and Anderson J. A. (2016)  ***Genome wide association study of seedling and adult plant leaf rust resistance in elite spring wheat breeding lines.*** PLoS One 11:e0148671"       [Link to Gao et al 2016 PloS One article](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0148671)
 
 
 
