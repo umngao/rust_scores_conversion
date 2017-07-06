@@ -14,6 +14,8 @@ convert_field = function(x, typo=typo_field){
         ### (II) convert_mrs function to convert MRS into numeric scales based on 1986 CIMMYT mannuals 
         convert_mrs = function(IT){
                 IT = toupper(IT)
+                IT = gsub('X','',IT)
+                IT = gsub('Y', '', IT)
                 IT = gsub('MR','X', IT)
                 IT = gsub('MS','Y', IT)
                 
@@ -39,6 +41,7 @@ convert_field = function(x, typo=typo_field){
         #convert_mrs('345')  NaN
         #convert_mrs('MR') 0.4
         #convert_mrs('X') 0.4 ######## Is this what people wanted? probably not. Fix it!
+        #convert_mrs('X') Nan fixed
         
         
         ### (III) convert_read function to convert the complete cell value such as '35MRMS60S' into three values Sev, IT, COI

@@ -33,6 +33,7 @@ sub convert_typo {
 #2 response type should be converted to numeric;
 sub convert_mrs{
 	my $it=$_[0];
+    $it=~s/X//g; $it=~s/Y//g; ## removing previous X or Y  if any
 	$it=~s/MR/X/g; $it=~s/MS/Y/g; 
 		#using X to represent Moderately resistant; 
 		#using Y to represent Moderately susceptible
@@ -40,7 +41,7 @@ sub convert_mrs{
 	@FF=($FF[0],@FF);
 	my %hash_rms=("R"=>0.2, "M"=>0.6, "S"=>1, "X"=>0.4,"Y"=>0.8);
 		## This scale is based on  Stubbs 1986 Cereal disease mannual, published by CIMMYT
-	my $flag="no"; ## set up a flag to scan if there is any non interpretable characters in response type reading
+	my $flag="no"; 
 	foreach my $f (@FF){
 		if (exists $hash_rms{$f}){
 			$f=$hash_rms{$f}

@@ -52,13 +52,15 @@ def convert_typo(read):
 def convert_mrs (IT):
     orig_it = IT
     IT = convert_typo(IT)
+    IT = IT.replace('X','')
+    IT = IT.replace('Y','')
     IT = IT.replace("MR",'X')
     IT = IT.replace('MS','Y')
     ITs = list(IT)
     if len(ITs)>0:
         ITs.insert(0, ITs[0])
     hash_mrs = {'R':0.2, 'M':0.6, 'S':1, 'X':0.4,'Y':0.8}
-    flag = 1  ### set up a flag to scan if there are any non-interpretable characters
+    flag = 1  
     num_ITs = list()
     for f in ITs:
         if f in  hash_mrs:
