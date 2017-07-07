@@ -4,7 +4,7 @@ convert_field = function(x, typo=typo_field){
         ## You can cite Gao et al, 2016 PLoS One paper PLoS One 11:e0148671 for the method
         ## This function requires a column/vector of field rust reading, containing characters [0-9][MRS][-winteR][7jS][dry][type] etc. 
         ## and a typo data, column1 is orig_read, column is replace to ... You can use the typo file in the sample data folder
-        ## The output is a numeric vector
+        ## The output is a list of three numeric vectors Severity, Infection Type and Coefificnet of infection (See Gao PloS One 216 for details on how they were calculated).   
         
         colnames(typo)[1:2] = c('orig_read','replace_to')
         #x = c("10R",'TraceR','tR','Tr3', "10RMR",  "10MRMS",'es')
